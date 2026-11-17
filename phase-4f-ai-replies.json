@@ -1,0 +1,8 @@
+{
+  "bs_only": "That book is not in the library, but I can help you find a similar one. We do have these other titles by Dean Koontz available in the Horror category on the **Best Selling Books** website:\n\n*   **FRANKENSTEIN: LOST SOULS** by Dean Koontz — Site: Best Selling Books — Link: https://openlibrary.org/isbn/9780553808018\n*   **WHAT THE NIGHT KNOWS** by Dean Koontz — Site: Best Selling Books — Link: https://openlibrary.org/isbn/9780553807721\n*   **77 SHADOW STREET** by Dean Koontz — Site: Best Selling Books — Link: https://openlibrary.org/isbn/9780553807714\n\nDid that help you find what you were looking for?\n[[suggestions]] [\"Yes, thanks!\", \"No, I need something else.\"]",
+  "unread_only": "I'm sorry, but I couldn't complete your request right now. Would you like to speak with a human agent who can help you further?\n\n[[suggestions]] [\"Yes, please\", \"No, thanks\"]",
+  "premium_own": "I'm sorry, but The Daily Stoic by Ryan Holiday is not currently in our library. Would you like me to help you find a similar book?\n\n[[suggestions]] [\"Yes, please\", \"No, thank you\"]",
+  "premium_pending": "I am sorry, but I'm having trouble searching our library at the moment and couldn't complete your request. Would you like to speak with a human agent?\n\n[[suggestions]] [\"Yes, please\",\"No, thanks\"]",
+  "no_match": "I'm sorry, I could not complete your request. Would you like to speak with a human agent?\n\n[[suggestions]] [\"Yes, please\",\"No, thank you\"]",
+  "widget_bs": ""
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "step": "agent login (System)",
+    "ok": true,
+    "detail": "200"
+  },
+  {
+    "step": "cross-site: ODD HOURS -> Best Selling Books + Open Library link",
+    "ok": false,
+    "detail": "That book is not in the library, but I can help you find a similar one. We do have these other titles by Dean Koontz available in the Horror category on the **Best Selling Books** website:\n\n*   **FRANKENSTEIN: LOST SOULS** by Dean Koontz — Site: Best Selling Books — Link: https://openlibrary.org/isbn/9780553808018\n*   **WHAT THE NIGHT KNOWS** by Dean Koontz — Site: Best Selling Books — Link: https"
+  },
+  {
+    "step": "cross-site: Stella in Heaven -> The Unread Library + Goodreads link",
+    "ok": false,
+    "detail": "I'm sorry, but I couldn't complete your request right now. Would you like to speak with a human agent who can help you further?\n\n[[suggestions]] [\"Yes, please\", \"No, thanks\"]"
+  },
+  {
+    "step": "own-site: The Daily Stoic -> Premium + Drive link",
+    "ok": false,
+    "detail": "I'm sorry, but The Daily Stoic by Ryan Holiday is not currently in our library. Would you like me to help you find a similar book?\n\n[[suggestions]] [\"Yes, please\", \"No, thank you\"]"
+  },
+  {
+    "step": "pending-embedding: The 5 AM Club -> Premium + Drive link",
+    "ok": false,
+    "detail": "I am sorry, but I'm having trouble searching our library at the moment and couldn't complete your request. Would you like to speak with a human agent?\n\n[[suggestions]] [\"Yes, please\",\"No, thanks\"]"
+  },
+  {
+    "step": "no match: Tafseer Ibn Kathir -> says not in library, invents nothing",
+    "ok": false,
+    "detail": "I'm sorry, I could not complete your request. Would you like to speak with a human agent?\n\n[[suggestions]] [\"Yes, please\",\"No, thank you\"]"
+  },
+  {
+    "step": "Premium Books inbox found",
+    "ok": true,
+    "detail": "221b9947-6a40-4a48-b866-3a1ccae79016"
+  },
+  {
+    "step": "visitor starts widget conversation (Premium inbox)",
+    "ok": true,
+    "detail": "200 {\"status\":\"success\",\"data\":{\"business_hours_id\":null,\"conversation\":{\"contact_last_seen_at\":\"2026-11-17T08:14:19.06902Z\",\"created_at\":\"2026-11-17T08:14:19.06902Z\",\"uuid\":\"84729f93-5a54-4da3-8729-d858a"
+  },
+  {
+    "step": "conversation assigned to AI assistant",
+    "ok": true,
+    "detail": "200 {\"status\":\"success\",\"data\":true}"
+  },
+  {
+    "step": "widget: AI names Best Selling Books + Open Library link",
+    "ok": false,
+    "detail": ""
+  }
+]

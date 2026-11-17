@@ -1,0 +1,52 @@
+[
+  {
+    "step": "agent login (System)",
+    "ok": true,
+    "detail": "200"
+  },
+  {
+    "step": "retry 1: Premium book -> entry link, no Drive link",
+    "ok": false,
+    "detail": "HTTP 429 {\"status\":\"error\",\"message\":\"The AI provider is rate limiting requests. Wait a minute and try again.\",\"data\":null,\"error_type\":\"RateLimitException\"}"
+  },
+  {
+    "step": "retry 2: FACES OF FEAR -> Best Selling Books + Open Library link",
+    "ok": false,
+    "detail": "HTTP 429 {\"status\":\"error\",\"message\":\"The AI provider is rate limiting requests. Wait a minute and try again.\",\"data\":null,\"error_type\":\"RateLimitException\"}"
+  },
+  {
+    "step": "retry 3: Stella in Heaven -> The Unread Library + Goodreads link",
+    "ok": false,
+    "detail": "HTTP 429 {\"status\":\"error\",\"message\":\"The AI provider is rate limiting requests. Wait a minute and try again.\",\"data\":null,\"error_type\":\"RateLimitException\"}"
+  },
+  {
+    "step": "retry 4: Tafseer Ibn Kathir -> not in library + request options",
+    "ok": false,
+    "detail": "HTTP 429 {\"status\":\"error\",\"message\":\"The AI provider is rate limiting requests. Wait a minute and try again.\",\"data\":null,\"error_type\":\"RateLimitException\"}"
+  },
+  {
+    "step": "Premium Books inbox found",
+    "ok": true,
+    "detail": "221b9947-6a40-4a48-b866-3a1ccae79016"
+  },
+  {
+    "step": "visitor starts widget conversation (Premium inbox)",
+    "ok": true,
+    "detail": "200 {\"status\":\"success\",\"data\":{\"business_hours_id\":null,\"conversation\":{\"contact_last_seen_at\":\"2026-11-17T11:14:23.485353Z\",\"created_at\":\"2026-11-17T11:14:23.485353Z\",\"uuid\":\"0993da82-193e-49ab-950b-479"
+  },
+  {
+    "step": "widget conversation uuid",
+    "ok": true,
+    "detail": "0993da82-193e-49ab-950b-479fd4bc5f3a"
+  },
+  {
+    "step": "conversation assigned to AI assistant",
+    "ok": true,
+    "detail": "200 {\"status\":\"success\",\"data\":true}"
+  },
+  {
+    "step": "widget: AI gives Premium entry link, no Drive link",
+    "ok": false,
+    "detail": ""
+  }
+]

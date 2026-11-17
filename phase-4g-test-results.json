@@ -1,0 +1,47 @@
+[
+  {
+    "step": "agent login (System)",
+    "ok": true,
+    "detail": "200"
+  },
+  {
+    "step": "urdufree-only: Mukhtalif Mumalik ke Lazeez Khane -> Urdu Free Books + archive.org link",
+    "ok": false,
+    "detail": "I'm sorry, I could not complete your request at this time. Would you like me to connect you with a human agent who can help?\n\n[[suggestions]] [\"Yes, please\", \"No, thanks\"]"
+  },
+  {
+    "step": "urdufree-only: Tariq Bin Ziyad -> Urdu Free Books + archive.org link",
+    "ok": false,
+    "detail": "HTTP 429 {\"status\":\"error\",\"message\":\"The AI provider is rate limiting requests. Wait a minute and try again.\",\"data\":null,\"error_type\":\"RateLimitException\"}"
+  },
+  {
+    "step": "urdufree-only: Tajdeed Fikriyat Islam -> Urdu Free Books + archive.org link",
+    "ok": false,
+    "detail": "HTTP 429 {\"status\":\"error\",\"message\":\"The AI provider is rate limiting requests. Wait a minute and try again.\",\"data\":null,\"error_type\":\"RateLimitException\"}"
+  },
+  {
+    "step": "no match: Tafseer Ibn Kathir -> says not in library, invents nothing",
+    "ok": false,
+    "detail": "HTTP 429 {\"status\":\"error\",\"message\":\"The AI provider is rate limiting requests. Wait a minute and try again.\",\"data\":null,\"error_type\":\"RateLimitException\"}"
+  },
+  {
+    "step": "Urdu Free Books inbox found",
+    "ok": true,
+    "detail": "2765c956-8aa2-4dd1-b4f9-2bfae6d7cf06"
+  },
+  {
+    "step": "visitor starts widget conversation (Urdu Free inbox)",
+    "ok": true,
+    "detail": "200 {\"status\":\"success\",\"data\":{\"business_hours_id\":null,\"conversation\":{\"contact_last_seen_at\":\"2026-11-17T08:17:03.504466Z\",\"created_at\":\"2026-11-17T08:17:03.504466Z\",\"uuid\":\"e3341bce-01cc-4371-be10-dbc"
+  },
+  {
+    "step": "conversation assigned to AI assistant",
+    "ok": true,
+    "detail": "200 {\"status\":\"success\",\"data\":true}"
+  },
+  {
+    "step": "widget: AI names Urdu Free Books + archive.org link",
+    "ok": false,
+    "detail": ""
+  }
+]

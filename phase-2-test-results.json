@@ -1,0 +1,188 @@
+{
+  "inbox_uuid": "221b9947-6a40-4a48-b866-3a1ccae79016",
+  "conversation_uuid": "8cc1d842-212c-403e-ab94-b858e2a5b87d",
+  "passed": 36,
+  "total": 36,
+  "results": [
+    {
+      "step": "agent login (System)",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": {\"id\": 1, \"created_at\": \"2026-11-17T06:44:10.88886Z\", \"updated_at\": \"2026-11-17T11:08:43.562758Z\", \"first_name\": \"System\", \"last_name\": \"\", \"email\": \"System\", \"type\": \"agent\", \"availability_status\": \"offline\", \"phone_number_country_code\": null, \"phone_number\": null, \"avatar_url\": null, \"enabled\": true, \"last_active_at\": null, \"last_login_at\": \"2026-11-17T11:08:43.5627"
+    },
+    {
+      "step": "root page 200 (Vue SPA)",
+      "ok": true,
+      "detail": "200 1671B"
+    },
+    {
+      "step": "list inboxes (expect empty)",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": [{\"id\": 2, \"uuid\": \"2765c956-8aa2-4dd1-b4f9-2bfae6d7cf06\", \"created_at\": \"2026-11-17T06:44:38.475328Z\", \"updated_at\": \"2026-11-17T06:44:38.475328Z\", \"name\": \"Urdu Free Books\", \"channel\": \"livechat\", \"enabled\": true, \"csat_enabled\": false, \"prompt_tags_on_reply\": false, \"reopen_window_hours\": 0, \"from\": \"\", \"aliases\": [], \"from_name_template\": \"\", \"config\": {\"brand_nam"
+    },
+    {
+      "step": "live-view requires auth",
+      "ok": true,
+      "detail": "401"
+    },
+    {
+      "step": "live-view empty before any visitor joins",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": []}"
+    },
+    {
+      "step": "reuse existing inbox 'Premium Books Library'",
+      "ok": true,
+      "detail": "221b9947-6a40-4a48-b866-3a1ccae79016"
+    },
+    {
+      "step": "enable visitor conversation start on inbox",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": {\"id\": 1, \"uuid\": \"221b9947-6a40-4a48-b866-3a1ccae79016\", \"created_at\": \"2026-11-17T06:44:34.167893Z\", \"updated_at\": \"2026-11-17T11:52:00.730659Z\", \"name\": \"Premium Books Library\", \"channel\": \"livechat\", \"enabled\": true, \"csat_enabled\": false, \"prompt_tags_on_reply\": false, \"reopen_window_hours\": 0, \"from\": \"\", \"aliases\": [], \"from_name_template\": \"\", \"config\": {\"bran"
+    },
+    {
+      "step": "get inbox by id",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "step": "widget launcher settings",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": {\"branding\": {\"dark\": {\"colors\": {\"primary\": \"#1d4ed8\"}, \"launcher\": {\"logo_url\": \"\", \"color\": \"#000000\"}}, \"light\": {\"colors\": {\"primary\": \"#1d4ed8\"}, \"launcher\": {\"logo_url\": \"\", \"color\": \"#000000\"}}}, \"launcher\": {\"spacing\": {\"side\": 20, \"bottom\": 20}, \"position\": \"right\", \"icon_scale\": 100}, \"theme\": \"system\"}}"
+    },
+    {
+      "step": "widget page loads",
+      "ok": true,
+      "detail": "200 1183B"
+    },
+    {
+      "step": "widget.js loader serves",
+      "ok": true,
+      "detail": "200 29463B"
+    },
+    {
+      "step": "visitor starts conversation via widget",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": {\"business_hours_id\": null, \"conversation\": {\"contact_last_seen_at\": \"2026-11-17T11:52:00.760572Z\", \"created_at\": \"2026-11-17T11:52:00.760572Z\", \"uuid\": \"8cc1d842-212c-403e-ab94-b858e2a5b87d\", \"subject\": \"Book search\", \"status\": \"Open\", \"last_message\": {\"attachments\": [], \"content\": \"Assalam-o-Alaikum, mujhe 'Tafseer Ibn Kathir' kitab chahiye. Is type ki aur kon si ki"
+    },
+    {
+      "step": "conversation uuid returned",
+      "ok": true,
+      "detail": "8cc1d842-212c-403e-ab94-b858e2a5b87d"
+    },
+    {
+      "step": "visitor session token returned",
+      "ok": true,
+      "detail": "UoiXq7NM20bzMEw7CD63..."
+    },
+    {
+      "step": "visitor sends follow-up message",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": {\"id\": 26, \"uuid\": \"176ce7db-8ace-4510-af5a-71c0b92d198e\", \"status\": \"received\", \"conversation_uuid\": \"8cc1d842-212c-403e-ab94-b858e2a5b87d\", \"created_at\": \"2026-11-17T11:52:00.817474Z\", \"content\": \"Kya ye kitab Urdu tarjume ke saath mil sakti hai?\", \"text_content\": \"Kya ye kitab Urdu tarjume ke saath mil sakti hai?\", \"content_type\": \"text\", \"author\": {\"id\": 11, \"firs"
+    },
+    {
+      "step": "conversation appears in agent unassigned list",
+      "ok": true,
+      "detail": "200 found=True"
+    },
+    {
+      "step": "agent reads conversation messages",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": {\"results\": [{\"id\": 26, \"created_at\": \"2026-11-17T11:52:00.817474Z\", \"updated_at\": \"2026-11-17T11:52:00.817474Z\", \"uuid\": \"176ce7db-8ace-4510-af5a-71c0b92d198e\", \"type\": \"incoming\", \"status\": \"received\", \"conversation_id\": 9, \"conversation_uuid\": \"8cc1d842-212c-403e-ab94-b858e2a5b87d\", \"content\": \"Kya ye kitab Urdu tarjume ke saath mil sakti hai?\", \"text_content\": \"Ky"
+    },
+    {
+      "step": "agent replies in conversation",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": {\"id\": 27, \"created_at\": \"2026-11-17T11:52:00.860444Z\", \"updated_at\": \"2026-11-17T11:52:00.869533Z\", \"uuid\": \"fe57c203-0292-46d0-9122-a9925caa0e1e\", \"type\": \"outgoing\", \"status\": \"sent\", \"conversation_id\": 9, \"conversation_uuid\": \"8cc1d842-212c-403e-ab94-b858e2a5b87d\", \"content\": \"Wa Alaikum Assalam! Ji, Tafseer Ibn Kathir Urdu tarjume ke saath mojood hai. Isi type ki"
+    },
+    {
+      "step": "messages now include agent reply",
+      "ok": true,
+      "detail": "count=5"
+    },
+    {
+      "step": "live-view: widget WS join acknowledged",
+      "ok": true,
+      "detail": "{'type': 'joined', 'data': {'message': 'namaste!'}}"
+    },
+    {
+      "step": "live-view: visitor listed after WS join",
+      "ok": true,
+      "detail": "200 visitors=1"
+    },
+    {
+      "step": "live-view: visitor page + conversation linked",
+      "ok": true,
+      "detail": "url=https://premium-books-library.pages.dev/books/tafseer conv=8cc1d842 name=Visitor"
+    },
+    {
+      "step": "live-view: visitor gone after WS close",
+      "ok": true,
+      "detail": "visitors=0"
+    },
+    {
+      "step": "create macro (canned reply)",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": {\"id\": 5, \"created_at\": \"2026-11-17T11:52:02.694016Z\", \"updated_at\": \"2026-11-17T11:52:02.694016Z\", \"name\": \"Book greeting\", \"actions\": [], \"visibility\": \"all\", \"visible_when\": [\"replying\"], \"message_content\": \"Assalam-o-Alaikum! Aap ko kis kitab ki zaroorat hai? Kitab ka naam ya type batayein.\", \"user_id\": null, \"team_id\": null, \"usage_count\": 0}}"
+    },
+    {
+      "step": "list macros",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": [{\"id\": 5, \"created_at\": \"2026-11-17T11:52:02.694016Z\", \"updated_at\": \"2026-11-17T11:52:02.694016Z\", \"name\": \"Book greeting\", \"actions\": [], \"visibility\": \"all\", \"visible_when\": [\"replying\"], \"message_content\": \"Assalam-o-Alaikum! Aap ko kis kitab ki zaroorat hai? Kitab ka naam ya type batayein.\", \"user_id\": null, \"team_id\": null, \"usage_count\": 0}, {\"id\": 4, \"created"
+    },
+    {
+      "step": "macro search finds 'Book greeting' (slash-picker data)",
+      "ok": true,
+      "detail": "200 id=1"
+    },
+    {
+      "step": "macro content fetchable for slash-picker insert",
+      "ok": true,
+      "detail": "200 len=84"
+    },
+    {
+      "step": "reuse existing help centre",
+      "ok": true,
+      "detail": "id=1"
+    },
+    {
+      "step": "list help centres",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": [{\"id\": 1, \"created_at\": \"2026-11-17T06:44:36.113176Z\", \"updated_at\": \"2026-11-17T06:44:36.113176Z\", \"name\": \"Premium Books Library Help\", \"slug\": \"premium-books-help\", \"page_title\": \"Premium Books Library Help\", \"meta_description\": \"\", \"custom_css\": \"\", \"custom_js\": \"\", \"default_locale\": \"en-US\", \"allowed_locales\": [\"en-US\"], \"is_active\": true, \"theme\": {\"color_schem"
+    },
+    {
+      "step": "help centre tree loads",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": {\"help_center\": {\"id\": 1, \"created_at\": \"2026-11-17T06:44:36.113176Z\", \"updated_at\": \"2026-11-17T06:44:36.113176Z\", \"name\": \"Premium Books Library Help\", \"slug\": \"premium-books-help\", \"page_title\": \"Premium Books Library Help\", \"meta_description\": \"\", \"custom_css\": \"\", \"custom_js\": \"\", \"default_locale\": \"en-US\", \"allowed_locales\": [\"en-US\"], \"is_active\": true, \"theme\""
+    },
+    {
+      "step": "create help-centre article (AI-enabled)",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": {\"id\": 263, \"created_at\": \"2026-11-17T11:52:02.727916Z\", \"updated_at\": \"2026-11-17T11:52:02.727916Z\", \"collection_id\": 1, \"author_id\": 1, \"author_name\": null, \"author_avatar\": null, \"created_by\": 1, \"created_by_name\": null, \"slug\": \"how-to-find-a-book-by-name-or-type-5\", \"locale\": \"en-US\", \"title\": \"How to find a book by name or type\", \"content\": \"<p>Search by book na"
+    },
+    {
+      "step": "public help-centre article readable",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": {\"id\": 1, \"created_at\": \"2026-11-17T06:44:36.128543Z\", \"updated_at\": \"2026-11-17T06:44:36.128543Z\", \"collection_id\": 1, \"author_id\": 1, \"author_name\": \"System\", \"author_avatar\": null, \"created_by\": null, \"created_by_name\": null, \"slug\": \"how-to-find-a-book-by-name-or-type\", \"locale\": \"en-US\", \"title\": \"How to find a book by name or type\", \"content\": \"<p>Search by book"
+    },
+    {
+      "step": "AI provider config page loads (completion)",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": {\"provider\": \"openai\", \"base_url\": \"http://localhost:18080/v1\", \"api_key\": \"\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\", \"model\": \"gemini-3-flash-preview\", \"max_tokens\": 1024, \"dimensions\": 0, \"embedding_max_tokens\": 0, \"instructions\": \"You are the book-library assistant for a combined system covering four book websites: Premium Books Library, Urdu F"
+    },
+    {
+      "step": "AI provider config page loads (embedding)",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": {\"provider\": \"openai\", \"base_url\": \"http://localhost:18080/v1\", \"api_key\": \"\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\", \"model\": \"gemini-embedding-2\", \"max_tokens\": 0, \"dimensions\": 768, \"embedding_max_tokens\": 2048, \"instructions\": \"\", \"vision\": false, \"has_api_key\": true}}"
+    },
+    {
+      "step": "list AI assistants",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": [{\"id\": 1, \"created_at\": \"2026-11-17T06:44:25.755211Z\", \"updated_at\": \"2026-11-17T11:03:48.250047Z\", \"user_id\": 2, \"name\": \"Premium Books Assistant\", \"avatar_url\": null, \"description\": \"Answers visitors' book questions from the combined catalogue of all four book-library websites, with a direct link for every book.\", \"instructions\": \"You help visitors of four book-lib"
+    },
+    {
+      "step": "list AI snippets (KB)",
+      "ok": true,
+      "detail": "200 {\"status\": \"success\", \"data\": []}"
+    }
+  ]
+}
