@@ -11,3 +11,20 @@ dist/
 static/widget.min.js
 
 .playwright-mcp/
+
+# --- local-only, never push: live passwords / private data / huge local data ---
+phase-2-test.py
+phase-2-report.md
+phase-2-password.log
+backup-libredesk.sh
+restore-libredesk.sh
+phase-4h-recovery-backup-report.md
+phase-4i-recovery-report.md
+phase-4j-recovery-report.md
+phase-4k-recovery-report.md
+backups/
+urdufree/
+bin/
+*.log
+*.pid
+__pycache__/
