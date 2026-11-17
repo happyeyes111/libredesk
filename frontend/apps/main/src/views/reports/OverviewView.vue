@@ -73,6 +73,20 @@
             :labels="agentStatusLabels"
             size="large"
           />
+          <!-- Live View card (Phase 3): visitors on the sites right now. -->
+          <Card
+            class="flex-1"
+            :title="$t('liveView.visitorsOnline')"
+            :counts="liveViewCounts"
+            :labels="liveViewLabels"
+            size="large"
+          >
+            <template #header-right>
+              <router-link :to="{ name: 'live-view' }" class="text-sm text-primary hover:underline">
+                {{ $t('liveView.title') }} →
+              </router-link>
+            </template>
+          </Card>
         </div>
 
         <!-- Row 2: CSAT and Message Volume -->
@@ -419,6 +433,24 @@ const agentStatusLabels = computed(() => ({
   agents_reassigning: t('globals.messages.reassigning')
 }))
 
+// Live View card (Phase 3): visitors currently on the sites. Fetched with the
+// other card stats; failures are silent so the overview never breaks for
+// agents without the conversations:read permission.
+const liveViewCounts = ref({ visitors_online: 0 })
+const liveViewLabels = computed(() => ({
+  visitors_online: t('liveView.visitorsOnline')
+}))
+
+const fetchLiveVisitors = async () => {
+  try {
+    const { data } = await api.getLiveView()
+    liveViewCounts.value = { visitors_online: (data.data || []).length }
+  } catch {
+    // Keep the previous count; Live View has its own page for the error.
+  }
+  return true
+}
+
 const processedLineData = computed(() => {
   const { new_conversations = [], resolved_conversations = [] } = chartData.value
 
@@ -523,6 +555,7 @@ const loadDashboardData = async () => {
   try {
     const results = await Promise.all([
       fetchCardStats(),
+      fetchLiveVisitors(),
       ...Object.keys(sections).map((key) => runSectionFetch(key, range.value))
     ])
     if (results.every(Boolean)) lastUpdate.value = new Date()
