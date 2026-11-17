@@ -137,6 +137,7 @@ func handleWidgetWS(r *fastglue.Request) error {
 				liveChat.RemoveClient(client)
 				client.CloseChannel()
 			}
+			liveViewTrackLeave(userID)
 		}()
 
 		for {
@@ -168,7 +169,7 @@ func handleWidgetWS(r *fastglue.Request) error {
 				}
 				client, liveChat, inboxUUID, userID = nil, nil, "", 0
 
-				joinedClient, joinedLiveChat, joinedInboxUUID, joinedUserID, err := handleInboxJoin(app, sc, msg.Data, msg.Token, clientIP)
+				joinedClient, joinedLiveChat, joinedInboxUUID, joinedUserID, joinedInboxID, joinedInboxName, err := handleInboxJoin(app, sc, msg.Data, msg.Token, clientIP)
 				if err != nil {
 					app.lo.Debug("error handling widget join", "error", err)
 					sendWidgetError(sc, "Failed to join conversation")
@@ -178,6 +179,7 @@ func handleWidgetWS(r *fastglue.Request) error {
 				liveChat = joinedLiveChat
 				inboxUUID = joinedInboxUUID
 				userID = joinedUserID
+				liveViewTrackJoin(app, userID, inboxUUID, joinedInboxID, joinedInboxName)
 
 			case WidgetMsgTypeTyping:
 				if userID == 0 || inboxUUID == "" {
@@ -198,6 +200,7 @@ func handleWidgetWS(r *fastglue.Request) error {
 					continue
 				}
 				if userID > 0 {
+					liveViewTrackPing(userID)
 					wasOffline, err := app.user.UpdateLastActive(userID)
 					if err != nil {
 						app.lo.Error("error updating user last active timestamp", "user_id", userID, "error", err)
@@ -217,54 +220,54 @@ func handleWidgetWS(r *fastglue.Request) error {
 	return nil
 }
 
-func handleInboxJoin(app *App, sc *safeConn, data json.RawMessage, token, clientIP string) (*livechat.Client, *livechat.LiveChat, string, int, error) {
+func handleInboxJoin(app *App, sc *safeConn, data json.RawMessage, token, clientIP string) (*livechat.Client, *livechat.LiveChat, string, int, int, string, error) {
 	var joinData WidgetInboxJoinRequest
 	if err := json.Unmarshal(data, &joinData); err != nil {
-		return nil, nil, "", 0, fmt.Errorf("invalid join data: %w", err)
+		return nil, nil, "", 0, 0, "", fmt.Errorf("invalid join data: %w", err)
 	}
 
 	// Numeric inbox IDs are guessable, widgets always join by inbox UUID.
 	if _, err := uuid.Parse(joinData.InboxID); err != nil {
-		return nil, nil, "", 0, fmt.Errorf("inbox not found")
+		return nil, nil, "", 0, 0, "", fmt.Errorf("inbox not found")
 	}
 
 	inbox, err := app.inbox.GetDBRecord(joinData.InboxID)
 	if err != nil {
-		return nil, nil, "", 0, fmt.Errorf("inbox not found: %w", err)
+		return nil, nil, "", 0, 0, "", fmt.Errorf("inbox not found: %w", err)
 	}
 	if !inbox.Enabled {
-		return nil, nil, "", 0, fmt.Errorf("inbox is not enabled")
+		return nil, nil, "", 0, 0, "", fmt.Errorf("inbox is not enabled")
 	}
 
 	var config livechat.Config
 	if err := json.Unmarshal(inbox.Config, &config); err == nil {
 		if len(config.BlockedIPs) > 0 && httputil.IsIPBlocked(clientIP, config.BlockedIPs) {
-			return nil, nil, "", 0, fmt.Errorf("IP address is blocked")
+			return nil, nil, "", 0, 0, "", fmt.Errorf("IP address is blocked")
 		}
 	}
 
 	session, err := loadSession(app, token, config)
 	if err != nil {
-		return nil, nil, "", 0, fmt.Errorf("session token validation failed: %w", err)
+		return nil, nil, "", 0, 0, "", fmt.Errorf("session token validation failed: %w", err)
 	}
 	if session.InboxID != inbox.ID {
-		return nil, nil, "", 0, fmt.Errorf("session does not belong to this inbox")
+		return nil, nil, "", 0, 0, "", fmt.Errorf("session does not belong to this inbox")
 	}
 
 	// Verify user exists and is enabled.
 	user, err := app.user.Get(session.UserID, "", []string{})
 	if err != nil || !user.Enabled {
-		return nil, nil, "", 0, fmt.Errorf("user not found or disabled")
+		return nil, nil, "", 0, 0, "", fmt.Errorf("user not found or disabled")
 	}
 
 	lcInbox, err := app.inbox.Get(inbox.ID)
 	if err != nil {
-		return nil, nil, "", 0, fmt.Errorf("live chat inbox not found: %w", err)
+		return nil, nil, "", 0, 0, "", fmt.Errorf("live chat inbox not found: %w", err)
 	}
 
 	liveChat, ok := lcInbox.(*livechat.LiveChat)
 	if !ok {
-		return nil, nil, "", 0, fmt.Errorf("inbox is not a live chat inbox")
+		return nil, nil, "", 0, 0, "", fmt.Errorf("inbox is not a live chat inbox")
 	}
 
 	userIDStr := fmt.Sprintf("%d", user.ID)
@@ -273,7 +276,7 @@ func handleInboxJoin(app *App, sc *safeConn, data json.RawMessage, token, client
 		sc.conn.SetReadDeadline(time.Now())
 	})
 	if err != nil {
-		return nil, nil, "", 0, fmt.Errorf("adding client to live chat: %w", err)
+		return nil, nil, "", 0, 0, "", fmt.Errorf("adding client to live chat: %w", err)
 	}
 
 	go func() {
@@ -296,12 +299,12 @@ func handleInboxJoin(app *App, sc *safeConn, data json.RawMessage, token, client
 	}); err != nil {
 		liveChat.RemoveClient(client)
 		client.CloseChannel()
-		return nil, nil, "", 0, err
+		return nil, nil, "", 0, 0, "", err
 	}
 
 	app.lo.Debug("widget client joined live chat", "user_id", userIDStr, "inbox_uuid", joinData.InboxID)
 
-	return client, liveChat, joinData.InboxID, user.ID, nil
+	return client, liveChat, joinData.InboxID, user.ID, inbox.ID, inbox.Name, nil
 }
 
 func handleWidgetTyping(app *App, data json.RawMessage, userID int) {
@@ -384,6 +387,7 @@ func handleWidgetPageVisit(app *App, data json.RawMessage, contactID int) {
 		}
 	}
 	app.conversation.BroadcastContactUpdate(contactID, map[string]any{"page_visits": pages})
+	liveViewTrackPage(contactID, visit.URL, visit.Title)
 }
 
 func getPageVisitsFromRedis(app *App, contactID int) []map[string]string {

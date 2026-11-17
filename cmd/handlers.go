@@ -237,6 +237,9 @@ func initHandlers(g *fastglue.Fastglue, hub *ws.Hub) {
 	g.GET("/api/v1/reports/overview/messages", perm(handleOverviewMessageVolume, "reports:manage"))
 	g.GET("/api/v1/reports/overview/tags", perm(handleOverviewTagDistribution, "reports:manage"))
 
+	// Live View (Phase 3): currently-online website visitors.
+	g.GET("/api/v1/live-view", perm(handleLiveView, "conversations:read"))
+
 	// Templates.
 	g.GET("/api/v1/templates", perm(handleGetTemplates, "templates:manage"))
 	g.GET("/api/v1/templates/{id}", perm(handleGetTemplate, "templates:manage"))
@@ -424,6 +427,7 @@ func initHandlers(g *fastglue.Fastglue, hub *ws.Hub) {
 	g.GET("/inboxes/{all:*}", authPage(serveIndexPage))
 	g.GET("/teams/{all:*}", authPage(serveIndexPage))
 	g.GET("/views/{all:*}", authPage(serveIndexPage))
+	g.GET("/live-view/{all:*}", authPage(serveIndexPage))
 	g.GET("/admin/{all:*}", authPage(serveIndexPage))
 	g.GET("/contacts/{all:*}", authPage(serveIndexPage))
 	g.GET("/reports/{all:*}", authPage(serveIndexPage))
