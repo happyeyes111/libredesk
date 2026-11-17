@@ -58,6 +58,12 @@ const routes = [
         ]
       },
       {
+        path: '/live-view',
+        name: 'live-view',
+        component: () => import('@main/views/liveview/LiveView.vue'),
+        meta: { titleKey: 'liveView.title' }
+      },
+      {
         path: '/inboxes/teams/:teamID',
         name: 'teams',
         props: true,

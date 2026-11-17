@@ -172,6 +172,9 @@
         :enableInlineImages="conversationStore.current.inbox_channel === 'email'"
         :getSuggestions="getSuggestions"
         :getConversationSuggestions="getConversationSuggestions"
+        :enableMacroSuggestions="messageType === 'reply'"
+        :getMacroSuggestions="getMacroSuggestions"
+        :onMacroSelected="onMacroSelected"
         @aiGenerationChange="emit('aiGenerationChange', $event)"
         @send="handleSend"
         @mentionsChanged="handleMentionsChanged"
@@ -244,6 +247,7 @@ import ReplyBoxMenuBar from '@/features/conversation/ReplyBoxMenuBar.vue'
 import { useI18n } from 'vue-i18n'
 import { validateEmail } from '@shared-ui/utils/string'
 import { useMacroStore } from '@main/stores/macro'
+import { handleHTTPError } from '@shared-ui/utils/http.js'
 import api from '@main/api'
 import {
   createLatestConversationSuggestionFetcher,
@@ -309,6 +313,43 @@ const getConversationSuggestions = async (query) => {
   const messageTypeAtRequest = messageType.value
   const suggestions = (await fetchLatestConversationSuggestions(query)) || []
   return messageType.value === messageTypeAtRequest ? suggestions : []
+}
+
+// Slash (/) canned-reply picker (Phase 3): suggestions for the macro picker in
+// the reply composer. macroStore is already scoped to the current view
+// ("replying"), set by the messageType watcher below.
+const getMacroSuggestions = async (query) => {
+  await macroStore.searchMacros(query)
+  return macroStore.macroOptions.slice(0, 10).map((macro) => ({
+    id: macro.id,
+    label: macro.label,
+    has_message_content: macro.has_message_content,
+    actions: macro.actions
+  }))
+}
+
+// Runs when the agent picks a macro from the "/" picker. Fetches the macro's
+// reply text and returns it so the suggestion command inserts it at the
+// cursor. The macro is also recorded on the conversation (id + actions, but
+// WITHOUT message_content) so sending applies its actions — and so ReplyBox's
+// watcher does not replace the whole draft with the macro text.
+const onMacroSelected = async (macro) => {
+  let messageContent = ''
+  if (macro.has_message_content) {
+    try {
+      messageContent = await macroStore.fetchMacroContent(macro.id)
+    } catch (error) {
+      emitter.emit(EMITTER_EVENTS.SHOW_TOAST, {
+        variant: 'destructive',
+        description: handleHTTPError(error).message
+      })
+      return ''
+    }
+  }
+  const plainMacro = JSON.parse(JSON.stringify(macro))
+  plainMacro.message_content = ''
+  conversationStore.setMacro(plainMacro, MACRO_CONTEXT.REPLY)
+  return messageContent
 }
 
 // Handle mentions changed from editor

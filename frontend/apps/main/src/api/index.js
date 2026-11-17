@@ -404,6 +404,7 @@ const uploadMedia = (data) =>
     }
   })
 const getOverviewCounts = () => http.get('/api/v1/reports/overview/counts')
+const getLiveView = () => http.get('/api/v1/live-view')
 const getOverviewCharts = (params) => http.get('/api/v1/reports/overview/charts', { params })
 const getOverviewSLA = (params) => http.get('/api/v1/reports/overview/sla', { params })
 const getOverviewCSAT = (params) => http.get('/api/v1/reports/overview/csat', { params })
@@ -715,6 +716,7 @@ export default {
   getViewConversations,
   getOverviewCharts,
   getOverviewCounts,
+  getLiveView,
   getOverviewSLA,
   getOverviewCSAT,
   getOverviewMessageVolume,

@@ -17,6 +17,7 @@ import { Callout } from './extensions/Callout'
 import { Details, DetailsSummary, DetailsContent } from './extensions/Collapsible'
 import { TrailingNode } from './extensions/TrailingNode'
 import mentionSuggestion from './mentionSuggestion'
+import macroSuggestion from './macroSuggestion'
 import conversationReferenceSuggestion from './conversationReferenceSuggestion'
 import { ConversationReference } from './conversationReferenceExtension'
 
@@ -137,6 +138,14 @@ const sharedExtensions = ({
   CustomLink
 ]
 
+// Second Mention-based trigger for the "/" canned-reply picker. No macro node
+// is ever inserted — macroSuggestion's command deletes the "/query" trigger
+// and inserts the macro's reply text — so this extension only needs its own
+// name to keep it separate from the "@" mention extension.
+const MacroMention = Mention.extend({
+  name: 'macroMention'
+})
+
 export function buildConversationExtensions({ getPlaceholder }) {
   return [
     ...sharedExtensions({ getPlaceholder }),
@@ -144,6 +153,7 @@ export function buildConversationExtensions({ getPlaceholder }) {
       HTMLAttributes: { class: 'ld-mention' },
       suggestion: mentionSuggestion
     }),
+    MacroMention.configure({ suggestion: macroSuggestion }),
     ConversationReference.configure({ suggestion: conversationReferenceSuggestion }),
     CustomTable.configure({ resizable: false }),
     TableRow,

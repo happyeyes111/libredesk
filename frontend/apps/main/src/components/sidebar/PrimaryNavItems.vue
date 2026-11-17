@@ -25,7 +25,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useStorage } from '@vueuse/core'
-import { Inbox, Shield, FileLineChart, BookUser } from 'lucide-vue-next'
+import { Inbox, Shield, FileLineChart, BookUser, Eye } from 'lucide-vue-next'
 import { SidebarMenuButton, SidebarMenuItem } from '@shared-ui/components/ui/sidebar'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@shared-ui/components/ui/tooltip'
 import { useIsMobile } from '@shared-ui/composables'
@@ -58,6 +58,14 @@ const items = computed(() =>
       to: inboxTarget.value,
       isActive: route.path.startsWith('/inboxes'),
       show: true
+    },
+    {
+      key: 'live-view',
+      icon: Eye,
+      label: t('liveView.title'),
+      to: { name: 'live-view' },
+      isActive: route.path.startsWith('/live-view'),
+      show: userStore.can('conversations:read')
     },
     {
       key: 'contacts',

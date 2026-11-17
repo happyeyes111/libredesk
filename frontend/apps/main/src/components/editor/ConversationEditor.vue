@@ -46,6 +46,9 @@ const props = defineProps({
   getSuggestions: { type: Function, default: null },
   enableConversationReferences: { type: Boolean, default: false },
   getConversationSuggestions: { type: Function, default: null },
+  enableMacroSuggestions: { type: Boolean, default: false },
+  getMacroSuggestions: { type: Function, default: null },
+  onMacroSelected: { type: Function, default: null },
   enableInlineImages: { type: Boolean, default: false },
   linkedModel: { type: String, default: 'messages' }
 })
@@ -92,6 +95,9 @@ const { editor, extractMentions, focus } = useTextEditor({
   enableMentions: () => props.enableMentions,
   getConversationSuggestions: props.getConversationSuggestions,
   conversationReferencesEnabled: () => props.enableConversationReferences,
+  getMacroSuggestions: props.getMacroSuggestions,
+  enableMacroSuggestions: () => props.enableMacroSuggestions,
+  onMacroSelected: props.onMacroSelected,
   onSend: () => {
     emit('send')
     stopTyping()
