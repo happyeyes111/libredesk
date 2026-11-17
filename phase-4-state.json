@@ -1,0 +1,9 @@
+{
+  "completion_model": "gemini-3-flash-preview",
+  "embedding_model": "gemini-embedding-2",
+  "embedding_dimensions": 768,
+  "proxy_base_url": "http://localhost:18080/v1",
+  "assistant_id": 1,
+  "assistant_user_id": 2,
+  "assistant_name": "Premium Books Assistant"
+}

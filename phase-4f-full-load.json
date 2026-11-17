@@ -1,0 +1,48 @@
+{
+  "unread": {
+    "books": 276,
+    "articles": 13
+  },
+  "bestselling": {
+    "books": 5657,
+    "articles": 27
+  },
+  "premium": {
+    "books": 14779,
+    "articles": 44
+  },
+  "urdufree": {
+    "books": 108518,
+    "articles": 174,
+    "source": "urdufree/urdu-free-books/catalog-data/books.json (Drive file urdu-free-books-website.zip)",
+    "total_entries_in_file": 108521,
+    "unique_identifiers": 108521,
+    "excluded_owner_removed": 3,
+    "excluded_identifiers": [
+      "Engineering_Maths-in-Urdu_202006",
+      "20221002_20221002_1708",
+      "in.ernet.dli.2015.449590"
+    ]
+  },
+  "total_books": 129230,
+  "total_articles": 258,
+  "embedded_articles": 0,
+  "inboxes": {
+    "urdufree": {
+      "id": 2,
+      "uuid": "2765c956-8aa2-4dd1-b4f9-2bfae6d7cf06"
+    },
+    "bestselling": {
+      "id": 3,
+      "uuid": "bb98093e-cf11-4915-bdce-1ec3d14e5014"
+    },
+    "unread": {
+      "id": 4,
+      "uuid": "4cf2b6d3-b8d4-4635-a7f2-09c4d1ee265f"
+    },
+    "premium": {
+      "id": 1,
+      "uuid": "221b9947-6a40-4a48-b866-3a1ccae79016"
+    }
+  }
+}

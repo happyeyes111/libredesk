@@ -1,0 +1,23 @@
+{
+  "source_file": "urdufree/urdu-free-books/catalog-data/books.json",
+  "total_entries": 108521,
+  "unique_identifiers": 108521,
+  "missing_identifier": 0,
+  "excluded_owner_removed": 3,
+  "excluded_identifiers": [
+    "Engineering_Maths-in-Urdu_202006",
+    "20221002_20221002_1708",
+    "in.ernet.dli.2015.449590"
+  ],
+  "loaded_books": 108518,
+  "articles_created_this_run": 174,
+  "articles_skipped_existing": 0,
+  "categories": 54,
+  "embedded_new_articles": 0,
+  "embedded_all_collection": 0,
+  "total_articles_collection": 259,
+  "inbox": {
+    "id": 2,
+    "uuid": "2765c956-8aa2-4dd1-b4f9-2bfae6d7cf06"
+  }
+}

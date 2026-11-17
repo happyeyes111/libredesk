@@ -1,0 +1,5 @@
+{
+  "retry_bs": "HTTP 429 {\"status\":\"error\",\"message\":\"The AI provider is rate limiting requests. Wait a minute and try again.\",\"data\":null,\"error",
+  "retry_daily_stoic": "I'm sorry, I couldn't complete your request right now. Would you like me to connect you with a human agent who can help you further?\n\n[[suggestions]] [\"Yes, please\",\"No, thanks\"]",
+  "retry_no_match": "HTTP 429 {\"status\":\"error\",\"message\":\"The AI provider is rate limiting requests. Wait a minute and try again.\",\"data\":null,\"error"
+}
